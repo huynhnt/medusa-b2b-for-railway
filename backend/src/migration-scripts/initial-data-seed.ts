@@ -1,84 +1,98 @@
-import {
-  createApiKeysWorkflow,
-  createCollectionsWorkflow,
-  createProductCategoriesWorkflow,
-  createProductsWorkflow,
-  createRegionsWorkflow,
-  createSalesChannelsWorkflow,
-  createShippingOptionsWorkflow,
-  createShippingProfilesWorkflow,
-  createStockLocationsWorkflow,
-  createTaxRegionsWorkflow,
-  linkSalesChannelsToApiKeyWorkflow,
-  linkSalesChannelsToStockLocationWorkflow,
-  updateStoresWorkflow,
-} from "@medusajs/core-flows";
-import {
-  ExecArgs,
-  IFulfillmentModuleService,
-  ISalesChannelModuleService,
-  IStoreModuleService,
-} from "@medusajs/framework/types";
+import { MedusaContainer } from "@medusajs/framework";
 import {
   ContainerRegistrationKeys,
   ModuleRegistrationName,
   Modules,
   ProductStatus,
 } from "@medusajs/framework/utils";
+import {
+  createApiKeysWorkflow,
+  createCollectionsWorkflow,
+  createProductCategoriesWorkflow,
+  createProductOptionsWorkflow,
+  createProductsWorkflow,
+  createRegionsWorkflow,
+  createSalesChannelsWorkflow,
+  createShippingOptionsWorkflow,
+  createShippingProfilesWorkflow,
+  createStockLocationsWorkflow,
+  createStoresWorkflow,
+  createTaxRegionsWorkflow,
+  linkSalesChannelsToApiKeyWorkflow,
+  linkSalesChannelsToStockLocationWorkflow,
+} from "@medusajs/medusa/core-flows";
 
-export default async function seedDemoData({ container }: ExecArgs) {
+export default async function initial_data_seed({
+  container,
+}: {
+  container: MedusaContainer;
+}) {
   const logger = container.resolve(ContainerRegistrationKeys.LOGGER);
   const link = container.resolve(ContainerRegistrationKeys.LINK);
-  const fulfillmentModuleService: IFulfillmentModuleService = container.resolve(
+  const fulfillmentModuleService = container.resolve(
     ModuleRegistrationName.FULFILLMENT
-  );
-  const salesChannelModuleService: ISalesChannelModuleService =
-    container.resolve(ModuleRegistrationName.SALES_CHANNEL);
-  const storeModuleService: IStoreModuleService = container.resolve(
-    ModuleRegistrationName.STORE
   );
 
   const countries = ["gb", "de", "dk", "se", "fr", "es", "it"];
 
   logger.info("Seeding store data...");
-  const [store] = await storeModuleService.listStores();
-  let defaultSalesChannel = await salesChannelModuleService.listSalesChannels({
-    name: "Default Sales Channel",
-  });
-
-  if (!defaultSalesChannel.length) {
-    // create the default sales channel
-    const { result: salesChannelResult } = await createSalesChannelsWorkflow(
-      container
-    ).run({
-      input: {
-        salesChannelsData: [
-          {
-            name: "Default Sales Channel",
-          },
-        ],
-      },
-    });
-    defaultSalesChannel = salesChannelResult;
-  }
-
-  await updateStoresWorkflow(container).run({
+  const {
+    result: [defaultSalesChannel],
+  } = await createSalesChannelsWorkflow(container).run({
     input: {
-      selector: { id: store.id },
-      update: {
-        supported_currencies: [
-          {
-            currency_code: "eur",
-            is_default: true,
-          },
-          {
-            currency_code: "usd",
-          },
-        ],
-        default_sales_channel_id: defaultSalesChannel[0].id,
-      },
+      salesChannelsData: [
+        {
+          name: "Default Sales Channel",
+          description: "Created by Medusa",
+        },
+      ],
     },
   });
+
+  const {
+    result: [publishableApiKey],
+  } = await createApiKeysWorkflow(container).run({
+    input: {
+      api_keys: [
+        {
+          title: "Default Publishable API Key",
+          type: "publishable",
+          created_by: "",
+        },
+      ],
+    },
+  });
+
+  await linkSalesChannelsToApiKeyWorkflow(container).run({
+    input: {
+      id: publishableApiKey.id,
+      add: [defaultSalesChannel.id],
+    },
+  });
+
+  const {
+    result: [store],
+  } = await createStoresWorkflow(container).run({
+    input: {
+      stores: [
+        {
+          name: "Default Store",
+          supported_currencies: [
+            {
+              currency_code: "eur",
+              is_default: true,
+            },
+            {
+              currency_code: "usd",
+              is_default: false,
+            },
+          ],
+          default_sales_channel_id: defaultSalesChannel.id,
+        },
+      ],
+    },
+  });
+
   logger.info("Seeding region data...");
   const { result: regionResult } = await createRegionsWorkflow(container).run({
     input: {
@@ -99,6 +113,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
   await createTaxRegionsWorkflow(container).run({
     input: countries.map((country_code) => ({
       country_code,
+      provider_id: "tp_system",
     })),
   });
   logger.info("Finished seeding tax regions.");
@@ -224,7 +239,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
         rules: [
           {
             attribute: "enabled_in_store",
-            value: '"true"',
+            value: "true",
             operator: "eq",
           },
           {
@@ -262,7 +277,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
         rules: [
           {
             attribute: "enabled_in_store",
-            value: '"true"',
+            value: "true",
             operator: "eq",
           },
           {
@@ -279,37 +294,12 @@ export default async function seedDemoData({ container }: ExecArgs) {
   await linkSalesChannelsToStockLocationWorkflow(container).run({
     input: {
       id: stockLocation.id,
-      add: [defaultSalesChannel[0].id],
+      add: [defaultSalesChannel.id],
     },
   });
   logger.info("Finished seeding stock location data.");
 
-  logger.info("Seeding publishable API key data...");
-  const { result: publishableApiKeyResult } = await createApiKeysWorkflow(
-    container
-  ).run({
-    input: {
-      api_keys: [
-        {
-          title: "Webshop",
-          type: "publishable",
-          created_by: "",
-        },
-      ],
-    },
-  });
-  const publishableApiKey = publishableApiKeyResult[0];
-
-  await linkSalesChannelsToApiKeyWorkflow(container).run({
-    input: {
-      id: publishableApiKey.id,
-      add: [defaultSalesChannel[0].id],
-    },
-  });
-  logger.info("Finished seeding publishable API key data.");
-
   logger.info("Seeding product data...");
-
   const {
     result: [collection],
   } = await createCollectionsWorkflow(container).run({
@@ -348,6 +338,36 @@ export default async function seedDemoData({ container }: ExecArgs) {
     },
   });
 
+  const { result: productOptions } = await createProductOptionsWorkflow(
+    container
+  ).run({
+    input: {
+      product_options: [
+        {
+          title: "Storage",
+          values: ["256 GB", "512 GB"],
+        },
+        {
+          title: "Memory",
+          values: ["256 GB", "512 GB"],
+        },
+        {
+          title: "Color",
+          values: ["Blue", "Red", "Black", "White", "Purple"],
+        },
+      ],
+    },
+  });
+
+  const storageOption = productOptions.find((o) => o.title === "Storage")!;
+  const memoryOption = productOptions.find((o) => o.title === "Memory")!;
+  const colorOption = productOptions.find((o) => o.title === "Color")!;
+
+  const valueId = (
+    option: (typeof productOptions)[number],
+    value: string
+  ): string => option.values!.find((v) => v.value === value)!.id;
+
   await createProductsWorkflow(container).run({
     input: {
       products: [
@@ -375,12 +395,18 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
           options: [
             {
-              title: "Storage",
-              values: ["256 GB", "512 GB"],
+              id: storageOption.id,
+              value_ids: [
+                valueId(storageOption, "256 GB"),
+                valueId(storageOption, "512 GB"),
+              ],
             },
             {
-              title: "Color",
-              values: ["Blue", "Red"],
+              id: colorOption.id,
+              value_ids: [
+                valueId(colorOption, "Blue"),
+                valueId(colorOption, "Red"),
+              ],
             },
           ],
           variants: [
@@ -425,7 +451,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
           sales_channels: [
             {
-              id: defaultSalesChannel[0].id,
+              id: defaultSalesChannel.id,
             },
           ],
         },
@@ -455,8 +481,11 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
           options: [
             {
-              title: "Color",
-              values: ["Black", "White"],
+              id: colorOption.id,
+              value_ids: [
+                valueId(colorOption, "Black"),
+                valueId(colorOption, "White"),
+              ],
             },
           ],
           variants: [
@@ -499,7 +528,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
           sales_channels: [
             {
-              id: defaultSalesChannel[0].id,
+              id: defaultSalesChannel.id,
             },
           ],
         },
@@ -533,12 +562,18 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
           options: [
             {
-              title: "Memory",
-              values: ["256 GB", "512 GB"],
+              id: memoryOption.id,
+              value_ids: [
+                valueId(memoryOption, "256 GB"),
+                valueId(memoryOption, "512 GB"),
+              ],
             },
             {
-              title: "Color",
-              values: ["Purple", "Red"],
+              id: colorOption.id,
+              value_ids: [
+                valueId(colorOption, "Purple"),
+                valueId(colorOption, "Red"),
+              ],
             },
           ],
           variants: [
@@ -583,7 +618,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
           sales_channels: [
             {
-              id: defaultSalesChannel[0].id,
+              id: defaultSalesChannel.id,
             },
           ],
         },
@@ -620,8 +655,11 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
           options: [
             {
-              title: "Color",
-              values: ["White", "Black"],
+              id: colorOption.id,
+              value_ids: [
+                valueId(colorOption, "White"),
+                valueId(colorOption, "Black"),
+              ],
             },
           ],
           variants: [
@@ -664,7 +702,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
           sales_channels: [
             {
-              id: defaultSalesChannel[0].id,
+              id: defaultSalesChannel.id,
             },
           ],
         },
@@ -697,8 +735,11 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
           options: [
             {
-              title: "Color",
-              values: ["Black", "White"],
+              id: colorOption.id,
+              value_ids: [
+                valueId(colorOption, "Black"),
+                valueId(colorOption, "White"),
+              ],
             },
           ],
           variants: [
@@ -741,7 +782,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
           sales_channels: [
             {
-              id: defaultSalesChannel[0].id,
+              id: defaultSalesChannel.id,
             },
           ],
         },
@@ -770,8 +811,11 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
           options: [
             {
-              title: "Color",
-              values: ["Black", "White"],
+              id: colorOption.id,
+              value_ids: [
+                valueId(colorOption, "Black"),
+                valueId(colorOption, "White"),
+              ],
             },
           ],
           variants: [
@@ -814,7 +858,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
           sales_channels: [
             {
-              id: defaultSalesChannel[0].id,
+              id: defaultSalesChannel.id,
             },
           ],
         },
@@ -843,8 +887,11 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
           options: [
             {
-              title: "Color",
-              values: ["Black", "White"],
+              id: colorOption.id,
+              value_ids: [
+                valueId(colorOption, "Black"),
+                valueId(colorOption, "White"),
+              ],
             },
           ],
           variants: [
@@ -887,7 +934,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
           sales_channels: [
             {
-              id: defaultSalesChannel[0].id,
+              id: defaultSalesChannel.id,
             },
           ],
         },
@@ -916,8 +963,11 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
           options: [
             {
-              title: "Color",
-              values: ["Black", "White"],
+              id: colorOption.id,
+              value_ids: [
+                valueId(colorOption, "Black"),
+                valueId(colorOption, "White"),
+              ],
             },
           ],
           variants: [
@@ -960,7 +1010,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
           sales_channels: [
             {
-              id: defaultSalesChannel[0].id,
+              id: defaultSalesChannel.id,
             },
           ],
         },

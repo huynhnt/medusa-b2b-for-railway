@@ -1,42 +1,26 @@
-import { B2BCart } from "../global"
-import { ApprovalType } from "./module"
-import { ApprovalStatusType } from "./module"
-import { QueryApproval, QueryApprovalSettings } from "./query"
-
-/* Admin */
-export type AdminApprovalSettings = QueryApprovalSettings
-
-export type AdminUpdateApprovalSettings = {
-  requires_admin_approval: boolean
-  requires_sales_manager_approval: boolean
-}
+import { B2BCart } from "../global";
+import { ApprovalStatusType, ApprovalType } from "./module";
+import { QueryApproval, QueryApprovalStatus } from "./query";
 
 /* Store */
-export type StoreApprovalSettings = QueryApprovalSettings
-
-export type StoreUpdateApprovalSettings = {
-  requires_admin_approval: boolean
-  requires_sales_manager_approval: boolean
-}
-export type StoreApproval = QueryApproval
-
-export type StoreCreateApproval = {
-  type: ApprovalType
-  created_by: string
-}
-
-export type StoreUpdateApproval = {
-  status: ApprovalStatusType
-  handled_by: string
-}
-
 export type StoreApprovalResponse = {
-  approval: StoreApproval
-}
+  approval: QueryApproval;
+};
 
 export type StoreApprovalsResponse = {
-  carts_with_approvals: B2BCart[]
-  count: number
-  limit: number
-  offset: number
-}
+  carts_with_approvals: B2BCart[];
+  count: number;
+};
+
+export type StoreCreateApproval = {
+  cart_id: string;
+  type: ApprovalType;
+  created_by: string;
+};
+
+export type StoreUpdateApproval = {
+  status: ApprovalStatusType;
+  handled_by: string;
+};
+
+export type StoreApprovalStatus = QueryApprovalStatus;
