@@ -3,9 +3,9 @@ import {
   AdminOrder,
   AdminUser,
   StoreCart,
-} from "@medusajs/types";
+} from "@medusajs/framework/types";
 import { ModuleQuote, ModuleQuoteMessage } from "./module";
-import { QueryEmployee } from "../company";
+import { QueryEmployee } from "../company/index";
 
 export type QueryQuote = ModuleQuote & {
   draft_order: AdminOrder;

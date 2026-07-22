@@ -1,19 +1,13 @@
-import { CustomerDTO } from "@medusajs/types"
-import { ModuleCompany, ModuleEmployee } from "./module"
-import { QueryApproval, QueryApprovalSettings } from "../approval"
 import { HttpTypes } from "@medusajs/types"
-
-export type QueryCompany = ModuleCompany & {
-  employees: QueryEmployee[]
-  approval_settings: QueryApprovalSettings
-  cart: QueryCart[]
-}
+import { QueryApprovalSettings } from "../approval/query"
+import { ModuleCompany, ModuleEmployee } from "./module"
 
 export type QueryEmployee = ModuleEmployee & {
-  company: QueryCompany
-  customer: CustomerDTO
+  customer: HttpTypes.StoreCustomer
+  company?: QueryCompany
 }
 
-export type QueryCart = HttpTypes.StoreCart & {
-  approval: QueryApproval
+export type QueryCompany = ModuleCompany & {
+  employees?: QueryEmployee[]
+  approval_settings?: QueryApprovalSettings
 }

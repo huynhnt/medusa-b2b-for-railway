@@ -1,12 +1,12 @@
 "use client"
 
-import { isManual, isPaypal, isStripe } from "@/lib/constants"
+import { isManual, isPaypal, isStripeLike } from "@/lib/constants"
 import { createCartApproval, placeOrder } from "@/lib/data/cart"
 import ErrorMessage from "@/modules/checkout/components/error-message"
 import Button from "@/modules/common/components/button"
 import Spinner from "@/modules/common/icons/spinner"
 import { B2BCart } from "@/types"
-import { ApprovalStatusType } from "@/types/approval/module"
+import { ApprovalStatusType } from "@/types/approval"
 import { Container, Text, toast } from "@medusajs/ui"
 import { OnApproveActions, OnApproveData } from "@paypal/paypal-js"
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js"
@@ -64,7 +64,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
   const paymentSession = cart.payment_collection?.payment_sessions?.[0]
 
   switch (true) {
-    case isStripe(paymentSession?.provider_id):
+    case isStripeLike(paymentSession?.provider_id):
       return (
         <StripePaymentButton
           notReady={notReady}

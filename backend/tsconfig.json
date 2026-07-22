@@ -18,15 +18,11 @@
     "jsx": "react-jsx",
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "checkJs": false,
-    "paths": {
-      "@starter/types": ["./src/types"],
-      "@starter/types/*": ["./src/types/*"]
-    }
+    "checkJs": false
   },
   "ts-node": {
     "swc": true
   },
   "include": ["**/*", ".medusa/types/*"],
-  "exclude": ["node_modules", ".medusa/server", ".medusa/admin", ".cache"]
+  "exclude": ["node_modules", ".medusa/server", ".medusa/admin", ".cache", "eslint.config.*"]
 }
