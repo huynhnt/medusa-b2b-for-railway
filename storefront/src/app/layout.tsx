@@ -1,4 +1,5 @@
 import { getBaseURL } from "@/lib/util/env"
+import { I18nProvider } from "@/lib/i18n"
 import { Toaster } from "@medusajs/ui"
 import { Analytics } from "@vercel/analytics/next"
 import { GeistSans } from "geist/font/sans"
@@ -11,12 +12,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-mode="light" className={GeistSans.variable}>
+    <html lang="vi" data-mode="light" className={GeistSans.variable}>
       <body>
-        <main className="relative">{props.children}</main>
+        <I18nProvider initialLocale="vi">
+          <main className="relative">{props.children}</main>
+        </I18nProvider>
         <Toaster className="z-[99999]" position="bottom-left" />
         <Analytics />
       </body>
     </html>
   )
 }
+

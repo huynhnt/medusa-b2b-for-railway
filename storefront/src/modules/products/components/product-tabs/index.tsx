@@ -1,22 +1,23 @@
-"use client"
-
 import { HttpTypes } from "@medusajs/types"
 import { Table, Text } from "@medusajs/ui"
 import Markdown from "react-markdown"
 import Accordion from "./accordion"
+import { useTranslations } from "@/lib/i18n"
 
 type ProductTabsProps = {
   product: HttpTypes.StoreProduct
 }
 
 const ProductTabs = ({ product }: ProductTabsProps) => {
+  const { t } = useTranslations()
+
   const tabs = [
     {
-      label: "Description",
+      label: t("products.productDetails", undefined, "Mô tả sản phẩm"),
       component: <ProductSpecsTab product={product} />,
     },
     {
-      label: "Specifications",
+      label: t("products.specifications", undefined, "Thông số kỹ thuật"),
       component: <ProductSpecificationsTab product={product} />,
     },
   ]
@@ -39,6 +40,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
     </div>
   )
 }
+
 
 const ProductSpecsTab = ({ product }: ProductTabsProps) => {
   return (

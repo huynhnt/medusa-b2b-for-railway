@@ -1,0 +1,142 @@
+{
+  "nav": {
+    "home": "Home",
+    "store": "Store",
+    "searchPlaceholder": "Search for products...",
+    "quote": "Quote",
+    "account": "Account",
+    "cart": "Cart",
+    "b2bStarter": "Medusa B2B Starter",
+    "signIn": "Sign in",
+    "signOut": "Log out"
+  },
+  "home": {
+    "heroSubtitle": "Be light on your feet",
+    "heroTitle": "Portable Bestsellers",
+    "heroDescription": "See our widest selection of electronics and office technology for enterprises",
+    "githubRepo": "Github Repository",
+    "featuredProducts": "Featured Products",
+    "viewAll": "View all"
+  },
+  "products": {
+    "addToCart": "Add to cart",
+    "adding": "Adding...",
+    "selectOptions": "Please select options",
+    "inStock": "In stock",
+    "outOfStock": "Out of stock",
+    "quantity": "Quantity",
+    "price": "Price",
+    "productDetails": "Product Information",
+    "specifications": "Specifications",
+    "fastDelivery": "Fast delivery",
+    "fastDeliveryDesc": "Your package will arrive in 2-3 business days at your pick up location or in the comfort of your home.",
+    "simpleExchanges": "Simple exchanges",
+    "simpleExchangesDesc": "Is the fit not quite right? No worries - we'll exchange your product for a new one.",
+    "easyReturns": "Easy returns",
+    "easyReturnsDesc": "Just return your product and we'll refund your money. No questions asked – we'll do our best to make sure your return is hassle-free."
+  },
+  "cart": {
+    "title": "Your Cart",
+    "itemCount": "You have {{count}} items in your cart",
+    "empty": "Your shopping bag is empty",
+    "emptySubtitle": "You don't have anything in your cart. Let's change that, use the link below to start browsing our products.",
+    "exploreProducts": "Explore products",
+    "subtotal": "Subtotal",
+    "tax": "Taxes",
+    "shipping": "Shipping",
+    "total": "Total",
+    "checkout": "Go to checkout",
+    "requestQuote": "Request quote",
+    "remove": "Remove",
+    "signInPrompt": "Sign in to your business account for preferential pricing and spending limit control.",
+    "spendingLimitExceeded": "This order exceeds your spending limit ({{limit}}). It will require manager approval before processing."
+  },
+  "checkout": {
+    "shippingAddress": "Shipping Address",
+    "billingAddress": "Billing Address",
+    "sameAsBilling": "Same as billing address",
+    "shippingMethod": "Shipping Method",
+    "paymentMethod": "Payment Method",
+    "review": "Review",
+    "placeOrder": "Place order",
+    "submitApproval": "Submit for approval",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "company": "Company",
+    "address": "Address",
+    "postalCode": "Postal code",
+    "city": "City",
+    "province": "Province",
+    "country": "Country",
+    "phone": "Phone",
+    "email": "Email",
+    "backToCart": "Back to cart",
+    "edit": "Edit"
+  },
+  "account": {
+    "overview": "Overview",
+    "profile": "Profile",
+    "addresses": "Addresses",
+    "orders": "Orders",
+    "quotes": "Quotes",
+    "approvals": "Approvals",
+    "employees": "Employees",
+    "company": "Company",
+    "welcome": "Hello",
+    "role": "Role",
+    "spendingLimit": "Spending limit",
+    "admin": "Admin",
+    "employee": "Employee",
+    "notSet": "Not set",
+    "noLimit": "No limit"
+  },
+  "quotes": {
+    "quotesTitle": "Quotes",
+    "quoteDetails": "Quote details",
+    "requestQuote": "Request a quote",
+    "messages": "Messages",
+    "sendMessage": "Send message",
+    "typeMessage": "Type a message...",
+    "acceptQuote": "Accept quote",
+    "rejectQuote": "Reject quote",
+    "currentTotal": "Current Total",
+    "newTotal": "New Total",
+    "status": {
+      "accepted": "Accepted",
+      "customer_rejected": "Customer Rejected",
+      "merchant_rejected": "Merchant Rejected",
+      "pending_merchant": "Pending Merchant",
+      "pending_customer": "Pending Customer"
+    }
+  },
+  "approvals": {
+    "approvalsTitle": "Order Approvals",
+    "pendingApprovals": "Pending approvals",
+    "approve": "Approve",
+    "reject": "Reject",
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    }
+  },
+  "footer": {
+    "categories": "Categories",
+    "collections": "Collections",
+    "allRightsReserved": "All rights reserved.",
+    "poweredBy": "Powered by Medusa B2B"
+  },
+  "common": {
+    "loading": "Loading...",
+    "success": "Success",
+    "error": "An error occurred",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "save": "Save changes",
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View",
+    "quantity": "Quantity",
+    "price": "Price"
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "store": "Cửa hàng",
+    "searchPlaceholder": "Tìm kiếm sản phẩm...",
+    "quote": "Báo giá",
+    "account": "Tài khoản",
+    "cart": "Giỏ hàng",
+    "b2bStarter": "Medusa B2B Starter",
+    "signIn": "Đăng nhập",
+    "signOut": "Đăng xuất"
+  },
+  "home": {
+    "heroSubtitle": "Nhanh chóng & Tiện lợi",
+    "heroTitle": "Sản Phẩm Bán Chạy",
+    "heroDescription": "Khám phá bộ sưu tập thiết bị điện tử và phụ kiện công nghệ cao cấp cho doanh nghiệp",
+    "githubRepo": "Mã nguồn Github",
+    "featuredProducts": "Sản phẩm nổi bật",
+    "viewAll": "Xem tất cả"
+  },
+  "products": {
+    "addToCart": "Thêm vào giỏ hàng",
+    "adding": "Đang thêm...",
+    "selectOptions": "Vui lòng chọn phân loại",
+    "inStock": "Còn hàng",
+    "outOfStock": "Hết hàng",
+    "quantity": "Số lượng",
+    "price": "Giá",
+    "productDetails": "Chi tiết sản phẩm",
+    "specifications": "Thông số kỹ thuật",
+    "fastDelivery": "Giao hàng nhanh",
+    "fastDeliveryDesc": "Giao hàng tận nơi từ 2-3 ngày làm việc.",
+    "simpleExchanges": "Đổi trả linh hoạt",
+    "simpleExchangesDesc": "Chính sách đổi trả bảo vệ tối đa quyền lợi doanh nghiệp.",
+    "easyReturns": "Bảo hành chính hãng",
+    "easyReturnsDesc": "Cam kết 100% sản phẩm chính hãng với bảo hành toàn diện."
+  },
+  "cart": {
+    "title": "Giỏ hàng của bạn",
+    "itemCount": "Bạn có {{count}} sản phẩm trong giỏ hàng",
+    "empty": "Giỏ hàng của bạn đang trống",
+    "emptySubtitle": "Bạn chưa thêm sản phẩm nào vào giỏ hàng. Hãy khám phá danh mục sản phẩm của chúng tôi.",
+    "exploreProducts": "Khám phá sản phẩm",
+    "subtotal": "Tạm tính",
+    "tax": "Thuế",
+    "shipping": "Ước tính vận chuyển",
+    "total": "Tổng thanh toán",
+    "checkout": "Tiến hành đặt hàng",
+    "requestQuote": "Yêu cầu báo giá",
+    "remove": "Xóa",
+    "signInPrompt": "Đăng nhập tài khoản doanh nghiệp để nhận giá ưu đãi và sử dụng hạn mức chi tiêu.",
+    "spendingLimitExceeded": "Đơn hàng này vượt quá hạn mức chi tiêu của bạn ({{limit}}). Đơn hàng sẽ được chuyển tới người quản lý để phê duyệt trước khi xử lý."
+  },
+  "checkout": {
+    "shippingAddress": "Địa chỉ giao hàng",
+    "billingAddress": "Địa chỉ thanh toán",
+    "sameAsBilling": "Địa chỉ thanh toán giống địa chỉ giao hàng",
+    "shippingMethod": "Phương thức vận chuyển",
+    "paymentMethod": "Phương thức thanh toán",
+    "review": "Xem lại đơn hàng",
+    "placeOrder": "Hoàn tất đặt hàng",
+    "submitApproval": "Gửi yêu cầu phê duyệt",
+    "firstName": "Tên",
+    "lastName": "Họ",
+    "company": "Công ty",
+    "address": "Địa chỉ",
+    "postalCode": "Mã bưu chính",
+    "city": "Thành phố",
+    "province": "Tỉnh / Bang",
+    "country": "Quốc gia",
+    "phone": "Số điện thoại",
+    "email": "Email",
+    "backToCart": "Quay lại giỏ hàng",
+    "edit": "Chỉnh sửa"
+  },
+  "account": {
+    "overview": "Tổng quan",
+    "profile": "Hồ sơ cá nhân",
+    "addresses": "Sổ địa chỉ",
+    "orders": "Đơn hàng",
+    "quotes": "Báo giá B2B",
+    "approvals": "Phê duyệt đơn",
+    "employees": "Nhân viên công ty",
+    "company": "Thông tin công ty",
+    "welcome": "Xin chào",
+    "role": "Vai trò",
+    "spendingLimit": "Hạn mức chi tiêu",
+    "admin": "Quản trị viên",
+    "employee": "Nhân viên",
+    "notSet": "Chưa thiết lập",
+    "noLimit": "Không giới hạn"
+  },
+  "quotes": {
+    "quotesTitle": "Danh sách báo giá",
+    "quoteDetails": "Chi tiết báo giá",
+    "requestQuote": "Tạo yêu cầu báo giá",
+    "messages": "Trao đổi & Tin nhắn",
+    "sendMessage": "Gửi tin nhắn",
+    "typeMessage": "Nhập tin nhắn trao đổi...",
+    "acceptQuote": "Chấp nhận báo giá",
+    "rejectQuote": "Từ chối báo giá",
+    "currentTotal": "Tổng tiền ban đầu",
+    "newTotal": "Tổng tiền sau báo giá",
+    "status": {
+      "accepted": "Đã chấp nhận",
+      "customer_rejected": "Khách hàng từ chối",
+      "merchant_rejected": "Người bán từ chối",
+      "pending_merchant": "Chờ người bán xử lý",
+      "pending_customer": "Chờ khách hàng duyệt"
+    }
+  },
+  "approvals": {
+    "approvalsTitle": "Yêu cầu phê duyệt B2B",
+    "pendingApprovals": "Đang chờ phê duyệt",
+    "approve": "Phê duyệt",
+    "reject": "Từ chối",
+    "status": {
+      "pending": "Chờ duyệt",
+      "approved": "Đã phê duyệt",
+      "rejected": "Đã từ chối"
+    }
+  },
+  "footer": {
+    "categories": "Danh mục sản phẩm",
+    "collections": "Bộ sưu tập",
+    "allRightsReserved": "Tất cả các quyền được bảo lưu.",
+    "poweredBy": "Phát triển trên nền tảng Medusa B2B"
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "success": "Thành công",
+    "error": "Đã xảy ra lỗi",
+    "cancel": "Hủy",
+    "continue": "Tiếp tục",
+    "save": "Lưu thay đổi",
+    "edit": "Sửa",
+    "delete": "Xóa",
+    "view": "Xem",
+    "quantity": "Số lượng",
+    "price": "Giá"
+  }
+}

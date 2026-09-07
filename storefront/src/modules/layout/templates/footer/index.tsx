@@ -4,6 +4,7 @@ import { Text, clx } from "@medusajs/ui"
 
 import LocalizedClientLink from "@/modules/common/components/localized-client-link"
 import MedusaCTA from "@/modules/layout/components/medusa-cta"
+import LanguageSelect from "@/modules/layout/components/language-select"
 
 export default async function Footer() {
   const { collections } = await listCollections({
@@ -16,7 +17,7 @@ export default async function Footer() {
   })
 
   return (
-    <footer className="border-t border-ui-border-base w-full">
+    <footer className="border-t border-ui-border-base w-full bg-white">
       <div className="content-container flex flex-col w-full">
         <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
           <div>
@@ -31,7 +32,7 @@ export default async function Footer() {
             {product_categories && product_categories?.length > 0 && (
               <div className="flex flex-col gap-y-2">
                 <span className="txt-small-plus txt-ui-fg-base">
-                  Categories
+                  Danh mục
                 </span>
                 <ul
                   className="grid grid-cols-1 gap-2"
@@ -89,7 +90,7 @@ export default async function Footer() {
             {collections && collections.length > 0 && (
               <div className="flex flex-col gap-y-2">
                 <span className="txt-small-plus txt-ui-fg-base">
-                  Collections
+                  Bộ sưu tập
                 </span>
                 <ul
                   className={clx(
@@ -132,7 +133,7 @@ export default async function Footer() {
                     rel="noreferrer"
                     className="hover:text-ui-fg-base"
                   >
-                    Documentation
+                    Tài liệu hướng dẫn
                   </a>
                 </li>
                 <li>
@@ -142,20 +143,24 @@ export default async function Footer() {
                     rel="noreferrer"
                     className="hover:text-ui-fg-base"
                   >
-                    Source code
+                    Mã nguồn
                   </a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
+        <div className="flex flex-col sm:flex-row w-full mb-16 justify-between items-center gap-4 text-ui-fg-muted">
           <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Medusa Store. All rights reserved.
+            © {new Date().getFullYear()} Medusa Store. Tất cả các quyền được bảo lưu.
           </Text>
-          <MedusaCTA />
+          <div className="flex items-center gap-4">
+            <LanguageSelect />
+            <MedusaCTA />
+          </div>
         </div>
       </div>
     </footer>
   )
 }
+

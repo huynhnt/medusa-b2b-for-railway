@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslations } from "@/lib/i18n"
 import { useCart } from "@/lib/context/cart-context"
 import { getCheckoutStep } from "@/lib/util/get-checkout-step"
 import CartToCsvButton from "@/modules/cart/components/cart-to-csv-button"
@@ -21,6 +22,7 @@ type SummaryProps = {
 }
 
 const Summary = ({ customer, spendLimitExceeded }: SummaryProps) => {
+  const { t } = useTranslations()
   const { handleEmptyCart, cart } = useCart()
 
   if (!cart) return null
@@ -46,9 +48,11 @@ const Summary = ({ customer, spendLimitExceeded }: SummaryProps) => {
         <div className="flex items-center gap-x-2 bg-neutral-100 p-3 rounded-md shadow-borders-base">
           <ExclamationCircle className="text-orange-500 w-fit overflow-visible" />
           <p className="text-neutral-950 text-xs">
-            This order exceeds your spending limit.
-            <br />
-            Please contact your manager for approval.
+            {t(
+              "cart.spendingLimitWarning",
+              undefined,
+              "Đơn hàng này vượt quá hạn mức chi tiêu của bạn. Vui lòng liên hệ người quản lý để được phê duyệt."
+            )}
           </p>
         </div>
       )}
@@ -62,9 +66,9 @@ const Summary = ({ customer, spendLimitExceeded }: SummaryProps) => {
         >
           {customer
             ? spendLimitExceeded
-              ? "Spending Limit Exceeded"
-              : "Checkout"
-            : "Log in to Checkout"}
+              ? t("cart.spendingLimitExceededBtn", undefined, "Vượt quá hạn mức chi tiêu")
+              : t("cart.checkout", undefined, "Tiến hành đặt hàng")
+            : t("cart.loginToCheckout", undefined, "Đăng nhập để đặt hàng")}
         </Button>
       </LocalizedClientLink>
       {!!customer && (
@@ -74,7 +78,7 @@ const Summary = ({ customer, spendLimitExceeded }: SummaryProps) => {
             variant="secondary"
             disabled={isPendingApproval}
           >
-            Request Quote
+            {t("cart.requestQuote", undefined, "Yêu cầu báo giá")}
           </Button>
         </RequestQuoteConfirmation>
       )}
@@ -85,7 +89,7 @@ const Summary = ({ customer, spendLimitExceeded }: SummaryProps) => {
             variant="secondary"
             disabled={isPendingApproval}
           >
-            Request Quote
+            {t("cart.requestQuote", undefined, "Yêu cầu báo giá")}
           </Button>
         </RequestQuotePrompt>
       )}
@@ -96,10 +100,11 @@ const Summary = ({ customer, spendLimitExceeded }: SummaryProps) => {
         variant="secondary"
         disabled={isPendingApproval}
       >
-        Empty Cart
+        {t("cart.emptyCart", undefined, "Xóa toàn bộ giỏ hàng")}
       </Button>
     </Container>
   )
 }
+
 
 export default Summary

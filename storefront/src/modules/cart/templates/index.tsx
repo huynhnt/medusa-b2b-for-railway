@@ -7,11 +7,12 @@ import EmptyCartMessage from "@/modules/cart/components/empty-cart-message"
 import SignInPrompt from "@/modules/cart/components/sign-in-prompt"
 import ItemsTemplate from "@/modules/cart/templates/items"
 import Summary from "@/modules/cart/templates/summary"
-import { B2BCustomer } from "@/types/global"
+import { useTranslations } from "@/lib/i18n"
 import { Heading } from "@medusajs/ui"
 import { useMemo } from "react"
 
 const CartTemplate = ({ customer }: { customer: B2BCustomer | null }) => {
+  const { t } = useTranslations()
   const { cart } = useCart()
 
   const spendLimitExceeded = useMemo(
@@ -32,9 +33,10 @@ const CartTemplate = ({ customer }: { customer: B2BCustomer | null }) => {
             <div className="flex flex-col py-6 gap-y-6">
               <div className="pb-3 flex items-center">
                 <Heading className="text-neutral-950">
-                  You have {totalItems} items in your cart
+                  {t("cart.itemCount", { count: totalItems }, `Bạn có ${totalItems} sản phẩm trong giỏ hàng`)}
                 </Heading>
               </div>
+
               <div className="grid grid-cols-1 small:grid-cols-[1fr_360px] gap-2">
                 <div className="flex flex-col gap-y-2">
                   {!customer && <SignInPrompt />}
