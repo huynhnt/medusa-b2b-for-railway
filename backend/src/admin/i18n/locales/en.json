@@ -1,0 +1,145 @@
+{
+  "fields": {
+    "id": "ID",
+    "status": "Status",
+    "email": "Email",
+    "company": "Company",
+    "total": "Total",
+    "createdAt": "Created at",
+    "updatedAt": "Updated at",
+    "sku": "SKU",
+    "title": "Title",
+    "name": "Name",
+    "items": "Items",
+    "search": "Search...",
+    "qty": "Qty",
+    "price": "Price",
+    "product": "Product",
+    "date": "Date",
+    "phone": "Phone",
+    "address": "Address",
+    "city": "City",
+    "state": "State",
+    "country": "Country",
+    "currency": "Currency",
+    "customerGroup": "Customer Group",
+    "actions": "Actions",
+    "spendingLimit": "Spending Limit",
+    "requiresApproval": "Requires Approval",
+    "role": "Role",
+    "employee": "Employee",
+    "employees": "Employees",
+    "note": "Note",
+    "message": "Message",
+    "discount": "Discount",
+    "tax": "Tax",
+    "shipping": "Shipping",
+    "subtotal": "Subtotal"
+  },
+  "actions": {
+    "continue": "Continue",
+    "cancel": "Cancel",
+    "save": "Save",
+    "submit": "Submit",
+    "addItems": "Add items",
+    "duplicate": "Duplicate",
+    "remove": "Remove",
+    "undo": "Undo",
+    "edit": "Edit",
+    "editDetails": "Edit details",
+    "delete": "Delete",
+    "create": "Create",
+    "sendQuote": "Send quote",
+    "rejectQuote": "Reject quote",
+    "approve": "Approve",
+    "reject": "Reject",
+    "manageCustomerGroup": "Manage customer group",
+    "approvalSettings": "Approval settings",
+    "confirmDeletion": "Confirm Deletion",
+    "confirmDeletionDesc": "Are you sure you want to delete this item? This action cannot be undone.",
+    "addEmployee": "Add employee",
+    "updateEmployee": "Update employee",
+    "createCompany": "Create company",
+    "updateCompany": "Update company"
+  },
+  "general": {
+    "error": "An error occurred",
+    "success": "Success",
+    "new": "New",
+    "removed": "Removed",
+    "modified": "Modified",
+    "noResultsTitle": "No results found",
+    "noResultsMessage": "Please try searching with different keywords.",
+    "noRecordsTitle": "No records",
+    "noRecordsMessage": "There are no records to display.",
+    "loading": "Loading...",
+    "is": "is",
+    "countSelected": "{{count}} selected",
+    "of": "of",
+    "results": "results",
+    "pages": "pages",
+    "prev": "Prev",
+    "next": "Next",
+    "notFound": "Not found",
+    "none": "None",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "filters": {
+    "addFilter": "Add filter",
+    "compare": {
+      "exact": "Exact",
+      "range": "Range",
+      "greaterThan": "Greater than",
+      "lessThan": "Less than",
+      "greaterThanLabel": "Greater than {{value}}",
+      "lessThanLabel": "Less than {{value}}",
+      "andLabel": "and"
+    }
+  },
+  "orders": {
+    "edits": {
+      "currentTotal": "Current Total",
+      "newTotal": "New Total",
+      "validation": {
+        "quantityLowerThanFulfillment": "Quantity cannot be lower than fulfilled quantity."
+      }
+    }
+  },
+  "quotes": {
+    "title": "Quotes",
+    "details": "Quote details",
+    "messages": "Messages",
+    "itemNotes": "Item notes",
+    "status": {
+      "accepted": "Accepted",
+      "customer_rejected": "Customer Rejected",
+      "merchant_rejected": "Merchant Rejected",
+      "pending_merchant": "Pending Merchant",
+      "pending_customer": "Pending Customer"
+    }
+  },
+  "companies": {
+    "title": "Companies",
+    "create": "Create Company",
+    "details": "Company details",
+    "notFound": "Company not found",
+    "employees": "Employees",
+    "customerGroup": "Customer Group",
+    "spendingLimit": "Spending Limit",
+    "approvalSettings": "Approval settings",
+    "deleteSuccess": "Company {{name}} deleted successfully",
+    "createSuccess": "Company {{name}} created successfully",
+    "updateSuccess": "Company {{name}} updated successfully"
+  },
+  "approvals": {
+    "title": "Approvals",
+    "details": "Approval details",
+    "items": "Items pending approval",
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    }
+  }
+}

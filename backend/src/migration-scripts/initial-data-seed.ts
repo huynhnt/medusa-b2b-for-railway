@@ -33,7 +33,8 @@ export default async function initial_data_seed({
     ModuleRegistrationName.FULFILLMENT
   );
 
-  const countries = ["gb", "de", "dk", "se", "fr", "es", "it"];
+  const europeanCountries = ["gb", "de", "dk", "se", "fr", "es", "it"];
+  const allCountries = [...europeanCountries, "vn"];
 
   logger.info("Seeding store data...");
   const {
@@ -86,6 +87,10 @@ export default async function initial_data_seed({
               currency_code: "usd",
               is_default: false,
             },
+            {
+              currency_code: "vnd",
+              is_default: false,
+            },
           ],
           default_sales_channel_id: defaultSalesChannel.id,
         },
@@ -100,18 +105,25 @@ export default async function initial_data_seed({
         {
           name: "Europe",
           currency_code: "eur",
-          countries,
+          countries: europeanCountries,
+          payment_providers: ["pp_system_default"],
+        },
+        {
+          name: "Vietnam",
+          currency_code: "vnd",
+          countries: ["vn"],
           payment_providers: ["pp_system_default"],
         },
       ],
     },
   });
   const region = regionResult[0];
+  const vnRegion = regionResult[1];
   logger.info("Finished seeding regions.");
 
   logger.info("Seeding tax regions...");
   await createTaxRegionsWorkflow(container).run({
-    input: countries.map((country_code) => ({
+    input: allCountries.map((country_code) => ({
       country_code,
       provider_id: "tp_system",
     })),
@@ -161,7 +173,7 @@ export default async function initial_data_seed({
   const shippingProfile = shippingProfileResult[0];
 
   const fulfillmentSet = await fulfillmentModuleService.createFulfillmentSets({
-    name: "European Warehouse delivery",
+    name: "Warehouse delivery",
     type: "shipping",
     service_zones: [
       {
@@ -193,6 +205,15 @@ export default async function initial_data_seed({
           },
           {
             country_code: "it",
+            type: "country",
+          },
+        ],
+      },
+      {
+        name: "Vietnam",
+        geo_zones: [
+          {
+            country_code: "vn",
             type: "country",
           },
         ],
@@ -232,8 +253,16 @@ export default async function initial_data_seed({
             amount: 10,
           },
           {
+            currency_code: "vnd",
+            amount: 30000,
+          },
+          {
             region_id: region.id,
             amount: 10,
+          },
+          {
+            region_id: vnRegion.id,
+            amount: 30000,
           },
         ],
         rules: [
@@ -270,10 +299,19 @@ export default async function initial_data_seed({
             amount: 10,
           },
           {
+            currency_code: "vnd",
+            amount: 60000,
+          },
+          {
             region_id: region.id,
             amount: 10,
           },
+          {
+            region_id: vnRegion.id,
+            amount: 60000,
+          },
         ],
+
         rules: [
           {
             attribute: "enabled_in_store",
@@ -427,6 +465,10 @@ export default async function initial_data_seed({
                   amount: 1299,
                   currency_code: "usd",
                 },
+                {
+                  amount: 32500000,
+                  currency_code: "vnd",
+                },
               ],
             },
             {
@@ -445,6 +487,10 @@ export default async function initial_data_seed({
                 {
                   amount: 1259,
                   currency_code: "usd",
+                },
+                {
+                  amount: 31500000,
+                  currency_code: "vnd",
                 },
               ],
             },
@@ -505,6 +551,10 @@ export default async function initial_data_seed({
                   amount: 59,
                   currency_code: "usd",
                 },
+                {
+                  amount: 1500000,
+                  currency_code: "vnd",
+                },
               ],
             },
             {
@@ -522,6 +572,10 @@ export default async function initial_data_seed({
                 {
                   amount: 65,
                   currency_code: "usd",
+                },
+                {
+                  amount: 1650000,
+                  currency_code: "vnd",
                 },
               ],
             },
@@ -594,6 +648,10 @@ export default async function initial_data_seed({
                   amount: 999,
                   currency_code: "usd",
                 },
+                {
+                  amount: 25000000,
+                  currency_code: "vnd",
+                },
               ],
             },
             {
@@ -612,6 +670,10 @@ export default async function initial_data_seed({
                 {
                   amount: 959,
                   currency_code: "usd",
+                },
+                {
+                  amount: 24000000,
+                  currency_code: "vnd",
                 },
               ],
             },
@@ -679,10 +741,14 @@ export default async function initial_data_seed({
                   amount: 599,
                   currency_code: "usd",
                 },
+                {
+                  amount: 15000000,
+                  currency_code: "vnd",
+                },
               ],
             },
             {
-              title: "ACME Monitor 4k White",
+              title: "ACME Monitor 4k Black",
               sku: "ACME-MONITOR-BLACK",
               options: {
                 Color: "Black",
@@ -696,6 +762,10 @@ export default async function initial_data_seed({
                 {
                   amount: 599,
                   currency_code: "usd",
+                },
+                {
+                  amount: 15000000,
+                  currency_code: "vnd",
                 },
               ],
             },
@@ -759,6 +829,10 @@ export default async function initial_data_seed({
                   amount: 149,
                   currency_code: "usd",
                 },
+                {
+                  amount: 3750000,
+                  currency_code: "vnd",
+                },
               ],
             },
             {
@@ -776,6 +850,10 @@ export default async function initial_data_seed({
                 {
                   amount: 149,
                   currency_code: "usd",
+                },
+                {
+                  amount: 3750000,
+                  currency_code: "vnd",
                 },
               ],
             },
@@ -835,6 +913,10 @@ export default async function initial_data_seed({
                   amount: 99,
                   currency_code: "usd",
                 },
+                {
+                  amount: 2500000,
+                  currency_code: "vnd",
+                },
               ],
             },
             {
@@ -852,6 +934,10 @@ export default async function initial_data_seed({
                 {
                   amount: 99,
                   currency_code: "usd",
+                },
+                {
+                  amount: 2500000,
+                  currency_code: "vnd",
                 },
               ],
             },
@@ -911,6 +997,10 @@ export default async function initial_data_seed({
                   amount: 79,
                   currency_code: "usd",
                 },
+                {
+                  amount: 2000000,
+                  currency_code: "vnd",
+                },
               ],
             },
             {
@@ -928,6 +1018,10 @@ export default async function initial_data_seed({
                 {
                   amount: 79,
                   currency_code: "usd",
+                },
+                {
+                  amount: 2000000,
+                  currency_code: "vnd",
                 },
               ],
             },
@@ -987,6 +1081,10 @@ export default async function initial_data_seed({
                   amount: 79,
                   currency_code: "usd",
                 },
+                {
+                  amount: 2000000,
+                  currency_code: "vnd",
+                },
               ],
             },
             {
@@ -1005,6 +1103,10 @@ export default async function initial_data_seed({
                   amount: 55,
                   currency_code: "usd",
                 },
+                {
+                  amount: 1400000,
+                  currency_code: "vnd",
+                },
               ],
             },
           ],
@@ -1017,6 +1119,7 @@ export default async function initial_data_seed({
       ],
     },
   });
+
 
   logger.info("Finished seeding product data.");
 }

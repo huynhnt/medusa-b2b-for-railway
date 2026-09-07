@@ -1,0 +1,145 @@
+{
+  "fields": {
+    "id": "Mã ID",
+    "status": "Trạng thái",
+    "email": "Email",
+    "company": "Công ty",
+    "total": "Tổng tiền",
+    "createdAt": "Ngày tạo",
+    "updatedAt": "Ngày cập nhật",
+    "sku": "Mã SKU",
+    "title": "Tiêu đề",
+    "name": "Tên",
+    "items": "Sản phẩm",
+    "search": "Tìm kiếm...",
+    "qty": "Số lượng",
+    "price": "Giá",
+    "product": "Sản phẩm",
+    "date": "Ngày",
+    "phone": "Số điện thoại",
+    "address": "Địa chỉ",
+    "city": "Thành phố",
+    "state": "Tỉnh / Bang",
+    "country": "Quốc gia",
+    "currency": "Tiền tệ",
+    "customerGroup": "Nhóm khách hàng",
+    "actions": "Thao tác",
+    "spendingLimit": "Hạn mức chi tiêu",
+    "requiresApproval": "Yêu cầu duyệt",
+    "role": "Vai trò",
+    "employee": "Nhân viên",
+    "employees": "Danh sách nhân viên",
+    "note": "Ghi chú",
+    "message": "Nội dung tin nhắn",
+    "discount": "Chiết khấu",
+    "tax": "Thuế",
+    "shipping": "Vận chuyển",
+    "subtotal": "Tạm tính"
+  },
+  "actions": {
+    "continue": "Tiếp tục",
+    "cancel": "Hủy",
+    "save": "Lưu thay đổi",
+    "submit": "Gửi",
+    "addItems": "Thêm sản phẩm",
+    "duplicate": "Nhân bản",
+    "remove": "Xóa",
+    "undo": "Hoàn tác",
+    "edit": "Chỉnh sửa",
+    "editDetails": "Chỉnh sửa thông tin",
+    "delete": "Xóa",
+    "create": "Tạo mới",
+    "sendQuote": "Gửi báo giá",
+    "rejectQuote": "Từ chối báo giá",
+    "approve": "Phê duyệt",
+    "reject": "Từ chối",
+    "manageCustomerGroup": "Quản lý nhóm khách hàng",
+    "approvalSettings": "Cấu hình phê duyệt",
+    "confirmDeletion": "Xác nhận xóa",
+    "confirmDeletionDesc": "Bạn có chắc chắn muốn xóa mục này? Thao tác này không thể hoàn tác.",
+    "addEmployee": "Thêm nhân viên",
+    "updateEmployee": "Cập nhật nhân viên",
+    "createCompany": "Tạo công ty mới",
+    "updateCompany": "Cập nhật công ty"
+  },
+  "general": {
+    "error": "Đã xảy ra lỗi",
+    "success": "Thành công",
+    "new": "Mới",
+    "removed": "Đã xóa",
+    "modified": "Đã sửa",
+    "noResultsTitle": "Không tìm thấy kết quả",
+    "noResultsMessage": "Vui lòng thử lại với từ khóa tìm kiếm khác.",
+    "noRecordsTitle": "Chưa có dữ liệu",
+    "noRecordsMessage": "Hiện tại chưa có bản ghi nào để hiển thị.",
+    "loading": "Đang tải dữ liệu...",
+    "is": "là",
+    "countSelected": "Đã chọn {{count}} mục",
+    "of": "trên",
+    "results": "kết quả",
+    "pages": "trang",
+    "prev": "Trước",
+    "next": "Sau",
+    "notFound": "Không tìm thấy dữ liệu",
+    "none": "Không có",
+    "yes": "Có",
+    "no": "Không"
+  },
+  "filters": {
+    "addFilter": "Thêm bộ lọc",
+    "compare": {
+      "exact": "Chính xác",
+      "range": "Khoảng",
+      "greaterThan": "Lớn hơn",
+      "lessThan": "Nhỏ hơn",
+      "greaterThanLabel": "Lớn hơn {{value}}",
+      "lessThanLabel": "Nhỏ hơn {{value}}",
+      "andLabel": "và"
+    }
+  },
+  "orders": {
+    "edits": {
+      "currentTotal": "Tổng tiền hiện tại",
+      "newTotal": "Tổng tiền mới",
+      "validation": {
+        "quantityLowerThanFulfillment": "Số lượng không thể thấp hơn số lượng đã giao hàng."
+      }
+    }
+  },
+  "quotes": {
+    "title": "Báo giá",
+    "details": "Chi tiết báo giá",
+    "messages": "Trao đổi & Tin nhắn",
+    "itemNotes": "Ghi chú sản phẩm",
+    "status": {
+      "accepted": "Đã chấp nhận",
+      "customer_rejected": "Khách hàng từ chối",
+      "merchant_rejected": "Người bán từ chối",
+      "pending_merchant": "Chờ người bán xử lý",
+      "pending_customer": "Chờ khách hàng duyệt"
+    }
+  },
+  "companies": {
+    "title": "Công ty B2B",
+    "create": "Tạo công ty mới",
+    "details": "Chi tiết công ty",
+    "notFound": "Không tìm thấy công ty",
+    "employees": "Nhân viên",
+    "customerGroup": "Nhóm khách hàng",
+    "spendingLimit": "Hạn mức chi tiêu",
+    "approvalSettings": "Cài đặt phê duyệt",
+    "deleteSuccess": "Đã xóa công ty {{name}} thành công",
+    "createSuccess": "Đã tạo công ty {{name}} thành công",
+    "updateSuccess": "Đã cập nhật công ty {{name}} thành công"
+  },
+  "approvals": {
+    "title": "Phê duyệt B2B",
+    "details": "Chi tiết phê duyệt",
+    "items": "Danh sách sản phẩm yêu cầu duyệt",
+    "status": {
+      "pending": "Chờ phê duyệt",
+      "approved": "Đã phê duyệt",
+      "rejected": "Đã từ chối"
+    }
+  }
+}

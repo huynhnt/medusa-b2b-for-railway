@@ -9,11 +9,13 @@ import {
   Text,
   Toaster,
 } from "@medusajs/ui";
+import { useTranslation } from "react-i18next";
 import { QueryCompany } from "../../../types";
 import { useAdminCustomerGroups, useCompanies } from "../../hooks/api";
 import { CompanyActionsMenu, CompanyCreateDrawer } from "./components";
 
 const Companies = () => {
+  const { t } = useTranslation();
   const { data, isPending } = useCompanies({
     fields:
       "*employees,*employees.customer,*employees.company,*customer_group,*approval_settings",
@@ -25,23 +27,26 @@ const Companies = () => {
     <>
       <Container className="flex flex-col p-0 overflow-hidden">
         <div className="p-6 flex justify-between">
-          <Heading className="font-sans font-medium h1-core">Companies</Heading>
+          <Heading className="font-sans font-medium h1-core">
+            {t("companies.title", { defaultValue: "Companies" })}
+          </Heading>
           <CompanyCreateDrawer />
         </div>
-        {isPending && <Text>Loading...</Text>}
+        {isPending && <Text>{t("general.loading", { defaultValue: "Loading..." })}</Text>}
         <Table>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell></Table.HeaderCell>
-              <Table.HeaderCell>Name</Table.HeaderCell>
-              <Table.HeaderCell>Phone</Table.HeaderCell>
-              <Table.HeaderCell>Email</Table.HeaderCell>
-              <Table.HeaderCell>Address</Table.HeaderCell>
-              <Table.HeaderCell>Employees</Table.HeaderCell>
-              <Table.HeaderCell>Customer Group</Table.HeaderCell>
-              <Table.HeaderCell>Actions</Table.HeaderCell>
+              <Table.HeaderCell>{t("fields.name", { defaultValue: "Name" })}</Table.HeaderCell>
+              <Table.HeaderCell>{t("fields.phone", { defaultValue: "Phone" })}</Table.HeaderCell>
+              <Table.HeaderCell>{t("fields.email", { defaultValue: "Email" })}</Table.HeaderCell>
+              <Table.HeaderCell>{t("fields.address", { defaultValue: "Address" })}</Table.HeaderCell>
+              <Table.HeaderCell>{t("fields.employees", { defaultValue: "Employees" })}</Table.HeaderCell>
+              <Table.HeaderCell>{t("fields.customerGroup", { defaultValue: "Customer Group" })}</Table.HeaderCell>
+              <Table.HeaderCell>{t("fields.actions", { defaultValue: "Actions" })}</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
+
           {data?.companies && (
             <Table.Body>
               {data.companies.map((company: QueryCompany) => (

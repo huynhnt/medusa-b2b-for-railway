@@ -20,7 +20,7 @@ export const useApprovalsTableColumns = () => {
         cell: ({ getValue }) => <TextCell text={`#${getValue().slice(-4)}`} />,
       }),
       columnHelper.accessor("updated_at", {
-        header: t("Updated at"),
+        header: t("fields.updatedAt", { defaultValue: "Updated at" }),
         cell: ({ getValue }) => <DateCell date={getValue()} />,
       }),
       columnHelper.accessor("company.name", {
@@ -31,6 +31,9 @@ export const useApprovalsTableColumns = () => {
         header: t("fields.status"),
         cell: ({ getValue }) => {
           const status = getValue();
+          const label = t(`approvals.status.${status?.toLowerCase()}`, {
+            defaultValue: status ? status.charAt(0).toUpperCase() + status.slice(1).toLowerCase() : "",
+          });
           return (
             <StatusBadge
               color={
@@ -41,7 +44,7 @@ export const useApprovalsTableColumns = () => {
                   : "purple"
               }
             >
-              {status.charAt(0).toUpperCase() + status.slice(1).toLowerCase()}
+              {label}
             </StatusBadge>
           );
         },
@@ -56,10 +59,11 @@ export const useApprovalsTableColumns = () => {
         ),
       }),
       columnHelper.accessor("actions", {
-        header: t("Actions"),
+        header: t("fields.actions", { defaultValue: "Actions" }),
         cell: ({ row }) => <ApprovalActions cart={row.original} />,
       }),
     ],
     [t]
+
   );
 };

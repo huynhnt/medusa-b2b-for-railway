@@ -4,6 +4,7 @@ import { toast } from "@medusajs/ui";
 import { QueryCompany } from "../../../../types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ActionMenu } from "../../../components/common";
 import { DeletePrompt } from "../../../components/common/delete-prompt";
 import { useDeleteCompany } from "../../../hooks/api";
@@ -20,6 +21,7 @@ export const CompanyActionsMenu = ({
   company: QueryCompany;
   customerGroups?: HttpTypes.AdminCustomerGroup[];
 }) => {
+  const { t } = useTranslation();
   const [editOpen, setEditOpen] = useState(false);
   const [customerGroupOpen, setCustomerGroupOpen] = useState(false);
   const [approvalSettingsOpen, setApprovalSettingsOpen] = useState(false);
@@ -33,7 +35,12 @@ export const CompanyActionsMenu = ({
     mutateDelete(company.id, {
       onSuccess: () => {
         navigate("/companies");
-        toast.success(`Company ${company.name} deleted successfully`);
+        toast.success(
+          t("companies.deleteSuccess", {
+            name: company.name,
+            defaultValue: `Company ${company.name} deleted successfully`,
+          })
+        );
       },
     });
   };
@@ -46,17 +53,17 @@ export const CompanyActionsMenu = ({
             actions: [
               {
                 icon: <PencilSquare />,
-                label: "Edit details",
+                label: t("actions.editDetails", { defaultValue: "Edit details" }),
                 onClick: () => setEditOpen(true),
               },
               {
                 icon: <Link />,
-                label: "Manage customer group",
+                label: t("actions.manageCustomerGroup", { defaultValue: "Manage customer group" }),
                 onClick: () => setCustomerGroupOpen(true),
               },
               {
                 icon: <LockClosedSolid />,
-                label: "Approval settings",
+                label: t("actions.approvalSettings", { defaultValue: "Approval settings" }),
                 onClick: () => setApprovalSettingsOpen(true),
               },
             ],
@@ -65,13 +72,14 @@ export const CompanyActionsMenu = ({
             actions: [
               {
                 icon: <Trash />,
-                label: "Delete",
+                label: t("actions.delete", { defaultValue: "Delete" }),
                 onClick: () => setDeleteOpen(true),
               },
             ],
           },
         ]}
       />
+
 
       <CompanyUpdateDrawer
         company={company}
